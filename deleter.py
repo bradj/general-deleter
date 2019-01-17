@@ -3,6 +3,7 @@ import sys
 import time
 
 payload = {'token': 'INSERT_YOUR_TOKEN_HERE'}
+remove_messages_from = 'general'
 
 list_api = 'https://slack.com/api/channels.list'
 history_api = 'https://slack.com/api/channels.history'
@@ -72,9 +73,9 @@ def delete_message(channel_id, ts):
 
   print('Deleted {}'.format(ts))
 
-general_id = get_channel_id('general')
+channel_id = get_channel_id(remove_messages_from)
 
-messages = get_channel_messages(general_id)
+messages = get_channel_messages(channel_id)
 
 for message in messages:
-  delete_message(general_id, message['ts'])
+  delete_message(channel_id, message['ts'])
